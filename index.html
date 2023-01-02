@@ -4,18 +4,61 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Kamień, papier, nożyce</title>
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-	<div class="container">
-		<div id="buttons">
-			<button id="button-rock">Kamień</button>
-			<button id="button-paper">Papier</button>
-			<button id="button-scissors">Nożyce</button>
+	<header class="header">
+		<div class="container">
+			<div class="navigation">
+				<div class="navigation__logo">
+					<img src="images/fist.png" alt="Fist">
+				</div>
+				<nav class="navigation__nav">
+					<ul class="navigation__list">
+						<li class="navigation__item"><a href="#game" class="navigation__link">Play Game</a></li>
+						<li class="navigation__item"><a href="#instruction" class="navigation__link">Instruction</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 		</div>
-		<div id="messages"></div>
-	</div>
+	</header>
+	<main>
+		<section id="game">
+			<div class="container">
+				<h1 class="heading">Let's play a game!</h1>
+				<div id="buttons">
+					<button id="button-rock">Rock</button>
+					<button id="button-paper">Paper</button>
+					<button id="button-scissors">Scissors</button>
+				</div>
+				<div id="messages"></div>
+				<div id="result">
+					<span>You <span class="player-score">0</span></span>
+					<span class="score">-</span>
+					<span><span class="computer-score">0</span> Computer</span>
+
+				</div>
+			</div>
+		</section>
+		<section id="instruction">
+			<div class="container">
+				<h2>Instruction</h2>
+				<p>Player start with choosing one of three buttons “rock” , ”paper” or ”scissors”. Computer is making
+					it's choice at the same time. Rock
+					crushes scissors, scissors cut paper, and paper covers rock. See who wins each round!</p>
+			</div>
+
+		</section>
+	</main>
+	<footer class="footer">
+		<div class="container">
+			<p class="footer__copy">&copy; Copyright 2023 XYZ</p>
+		</div>
+	</footer>
 	<script src="js/functions.js"></script>
 	<script src="js/script.js"></script>
 </body>

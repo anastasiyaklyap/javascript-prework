@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	//This defines what 1rem is
+	font-size: 100%;
+
+	@include respond(tab-land) {
+		font-size: 75%; // 1rem = 12px, 12/16 = 75%
+	}
+	@include respond(tab-port) {
+		font-size: 50%; // 1rem = 8px, 8/16 = 50%
+	}
+}
+
+body {
+	box-sizing: border-box;
+}
+
+.container {
+	max-width: 1680px;
+	margin: 0 auto;
+	padding: 0 1rem;
+}

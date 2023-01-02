@@ -1,0 +1,48 @@
+.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: $color-neutral-1;
+
+	.container {
+		.navigation {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			&__logo {
+				img {
+					height: 45px;
+				}
+			}
+			&__list {
+				list-style: none;
+				text-align: center;
+			}
+
+			&__item {
+				display: inline-block;
+
+				&:not(:last-child) {
+					margin-right: 4rem;
+				}
+			}
+
+			&__link {
+				&:link,
+				&:visited {
+					font-size: $default-font-size;
+					text-transform: uppercase;
+					text-decoration: none;
+					color: $color-primary-1;
+					transition: all 0.2s;
+				}
+
+				&:hover,
+				&:active {
+					color: $color-primary-3;
+				}
+			}
+		}
+	}
+}

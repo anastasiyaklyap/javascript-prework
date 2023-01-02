@@ -1,51 +1,46 @@
 const buttonClicked = ({ argButtonName }) => {
 	const getMoveName = ({ argMoveId }) => {
 		clearMessages();
-		console.log(`wywołano funkcję getMoveName z argumentem: ${argMoveId}`);
 		switch (argMoveId) {
 			case '1':
-				return 'kamień';
+				return 'rock';
 				break;
 			case '2':
-				return 'papier';
+				return 'paper';
 				break;
 			case '3':
-				return 'nożyce';
+				return 'scissors';
 				break;
 			default:
-				printMessage(
-					`Nie znam ruchu o id ${argMoveId}. Zakładam, że chodziło o "kamień".`
-				);
-				return 'kamień';
+				printMessage({
+					msg: `Nie znam ruchu o id ${argMoveId}. Zakładam, że chodziło o "kamień".`,
+				});
+				return 'rock';
 		}
 	};
 
 	const displayResult = ({ argPlayerMove, argComputerMove }) => {
-		console.log(
-			`wywołano funkcję displayResults z argumentami: ${argPlayerMove}, ${argComputerMove}`
-		);
-
-		if (argPlayerMove == 'papier' && argComputerMove == 'kamień') {
-			printMessage('Wygrywasz!');
-		} else if (argPlayerMove == 'kamień' && argComputerMove == 'nożyce') {
-			printMessage('Wygrywasz!');
-		} else if (argPlayerMove == 'nożyce' && argComputerMove == 'papier') {
-			printMessage('Wygrywasz!');
+		if (
+			(argPlayerMove == 'paper' && argComputerMove == 'rock') ||
+			(argPlayerMove == 'rock' && argComputerMove == 'scissors') ||
+			(argPlayerMove == 'scissors' && argComputerMove == 'paper')
+		) {
+			printMessage({ msg: 'You win!' });
+			incrementResult({ player: 'user' });
 		} else if (argPlayerMove === argComputerMove) {
-			printMessage('Remis');
+			printMessage({ msg: 'Tie' });
 		} else {
-			printMessage('Przegrywasz :(');
+			printMessage({ msg: 'You lose :(' });
+			incrementResult({ player: 'computer' });
 		}
-		printMessage('Zagrałem ' + argComputerMove + ', a Ty ' + argPlayerMove);
+		printMessage({
+			msg: `I've played ${argComputerMove} and you played ${argPlayerMove}`,
+		});
 	};
 	const playerMove = getMoveName({ argMoveId: argButtonName });
 
-	console.log(`ruch gracza to: ${playerMove}`);
-
 	const randomNumber = Math.floor(Math.random() * 3 + 1).toString();
-	console.log(`wylosowana liczba to: ${randomNumber}`);
 	const computerMove = getMoveName({ argMoveId: randomNumber });
-	console.log(`ruch komputera to: ${computerMove}`);
 	displayResult({ argPlayerMove: playerMove, argComputerMove: computerMove });
 };
 

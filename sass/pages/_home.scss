@@ -1,0 +1,33 @@
+main {
+	background-color: $color-primary-3;
+	min-height: 95vh;
+	color: $color-neutral-1;
+	padding: 4rem 0;
+
+	#game {
+		padding: 4rem 0;
+		#buttons {
+			display: flex;
+			justify-content: center;
+		}
+
+		#messages {
+			text-align: center;
+			padding: 2rem 0;
+		}
+
+		#result {
+			text-align: center;
+			font-size: 4rem;
+		}
+	}
+	#instruction {
+		padding: 4rem 0;
+		text-align: center;
+
+		p {
+			width: 60%;
+			margin: 0 auto;
+		}
+	}
+}
