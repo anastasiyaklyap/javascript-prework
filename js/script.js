@@ -1,47 +1,49 @@
-const buttonClicked = ({ argButtonName }) => {
-	const getMoveName = ({ argMoveId }) => {
-		clearMessages();
-		switch (argMoveId) {
-			case '1':
-				return 'rock';
-				break;
-			case '2':
-				return 'paper';
-				break;
-			case '3':
-				return 'scissors';
-				break;
-			default:
-				printMessage({
-					msg: `Nie znam ruchu o id ${argMoveId}. Zakładam, że chodziło o "kamień".`,
-				});
-				return 'rock';
-		}
-	};
+const MOVES = Object.freeze({
+	Rock: 'rock',
+	Paper: 'paper',
+	Scissors: 'scissors',
+});
 
-	const displayResult = ({ argPlayerMove, argComputerMove }) => {
-		if (
-			(argPlayerMove === 'paper' && argComputerMove === 'rock') ||
-			(argPlayerMove === 'rock' && argComputerMove === 'scissors') ||
-			(argPlayerMove === 'scissors' && argComputerMove === 'paper')
-		) {
-			printMessage({ msg: 'You win!' });
-			incrementResult({ player: 'user' });
-		} else if (argPlayerMove === argComputerMove) {
-			printMessage({ msg: 'Tie' });
-		} else {
-			printMessage({ msg: 'You lose :(' });
-			incrementResult({ player: 'computer' });
-		}
-		printMessage({
-			msg: `I've played ${argComputerMove} and you played ${argPlayerMove}`,
-		});
-	};
-	const playerMove = getMoveName({ argMoveId: argButtonName });
+const printMessage = (msg) => {
+	var div = document.createElement('div');
+	div.innerHTML = msg;
+	document.getElementById('messages').appendChild(div);
+};
 
-	const randomNumber = Math.floor(Math.random() * 3 + 1).toString();
-	const computerMove = getMoveName({ argMoveId: randomNumber });
-	displayResult({ argPlayerMove: playerMove, argComputerMove: computerMove });
+const clearMessages = () => {
+	document.getElementById('messages').innerHTML = '';
+};
+
+const incrementResult = (player) => {
+	let x = document.querySelector('.computer-score');
+	if (player === 'user') {
+		x = document.querySelector('.player-score');
+	}
+	const currentScore = Number(x.textContent) + 1;
+	x.innerHTML = currentScore;
+};
+
+const buttonClicked = (userMove) => {
+	clearMessages();
+	const getComputerMove = (obj) => {
+		const keys = Object.keys(obj);
+		return keys[Math.floor(Math.random() * keys.length)];
+	};
+	const computerMove = MOVES[getComputerMove(MOVES)];
+	if (
+		(userMove === MOVES.Paper && computerMove === MOVES.Rock) ||
+		(userMove === MOVES.Rock && computerMove === MOVES.Scissors) ||
+		(userMove === MOVES.Scissors && computerMove === MOVES.Paper)
+	) {
+		printMessage('You win!');
+		incrementResult('user');
+	} else if (userMove === computerMove) {
+		printMessage('Tie');
+	} else {
+		printMessage('You lose :(');
+		incrementResult('computer');
+	}
+	printMessage(`I've played ${computerMove} and you played ${userMove}`);
 };
 
 const buttonRock = document.getElementById('button-rock');
@@ -49,11 +51,11 @@ const buttonPaper = document.getElementById('button-paper');
 const buttonScissors = document.getElementById('button-scissors');
 
 buttonRock.addEventListener('click', () => {
-	buttonClicked({ argButtonName: '1' });
+	buttonClicked(MOVES.Rock);
 });
 buttonPaper.addEventListener('click', () => {
-	buttonClicked({ argButtonName: '2' });
+	buttonClicked(MOVES.Paper);
 });
 buttonScissors.addEventListener('click', () => {
-	buttonClicked({ argButtonName: '3' });
+	buttonClicked(MOVES.Scissors);
 });
