@@ -21,9 +21,9 @@ const buttonClicked = ({ argButtonName }) => {
 
 	const displayResult = ({ argPlayerMove, argComputerMove }) => {
 		if (
-			(argPlayerMove == 'paper' && argComputerMove == 'rock') ||
-			(argPlayerMove == 'rock' && argComputerMove == 'scissors') ||
-			(argPlayerMove == 'scissors' && argComputerMove == 'paper')
+			(argPlayerMove === 'paper' && argComputerMove === 'rock') ||
+			(argPlayerMove === 'rock' && argComputerMove === 'scissors') ||
+			(argPlayerMove === 'scissors' && argComputerMove === 'paper')
 		) {
 			printMessage({ msg: 'You win!' });
 			incrementResult({ player: 'user' });
